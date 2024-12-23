@@ -1,0 +1,3 @@
+[submodule "tb4_mpc_nav/mpc_ros2"]
+	path = tb4_mpc_nav/mpc_ros2
+	url = git@github.com:kuralme/mpc_ros2.git

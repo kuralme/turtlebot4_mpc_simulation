@@ -8,7 +8,7 @@
 
 This is a repository aims to simulate the Turtlebot4 robot for use with Nav2 and custom MPC controller.
 
-
+<img src="assets/depot.png" alt="Turtlebot4 Robot" width="500"/>
 <!-- [![Video Label](http://img.youtube.com/vid)] -->
 
 

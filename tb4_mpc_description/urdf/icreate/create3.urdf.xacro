@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
 <robot name="create3" xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:include filename="$(find nav2_minimal_tb4_description)/urdf/icreate/bumper.urdf.xacro" />
-  <xacro:include filename="$(find nav2_minimal_tb4_description)/urdf/icreate/caster.urdf.xacro" />
-  <xacro:include filename="$(find nav2_minimal_tb4_description)/urdf/icreate/common_properties.urdf.xacro"/>
-  <xacro:include filename="$(find nav2_minimal_tb4_description)/urdf/icreate/sensors/imu.urdf.xacro" />
-  <xacro:include filename="$(find nav2_minimal_tb4_description)/urdf/icreate/wheel.urdf.xacro" />
+  <xacro:include filename="$(find tb4_mpc_description)/urdf/icreate/bumper.urdf.xacro" />
+  <xacro:include filename="$(find tb4_mpc_description)/urdf/icreate/caster.urdf.xacro" />
+  <xacro:include filename="$(find tb4_mpc_description)/urdf/icreate/common_properties.urdf.xacro"/>
+  <xacro:include filename="$(find tb4_mpc_description)/urdf/icreate/sensors/imu.urdf.xacro" />
+  <xacro:include filename="$(find tb4_mpc_description)/urdf/icreate/wheel.urdf.xacro" />
 
   <!-- Gazebo version -->
   <xacro:arg name="gazebo"                       default="ignition" />
