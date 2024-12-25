@@ -12,7 +12,7 @@ def generate_launch_description():
     planner_yaml = os.path.join(planner_config_dir, 'planner_server.yaml')
     default_bt_xml_path = os.path.join(planner_config_dir, 'behavior.xml')
     bt_navigator_yaml = os.path.join(planner_config_dir, 'bt_navigator.yaml')
-    # recovery_yaml = os.path.join(planner_config_dir, 'recovery.yaml')
+    recovery_yaml = os.path.join(planner_config_dir, 'recovery.yaml')
     controller_yaml = os.path.join(planner_config_dir, 'controller.yaml')
     waypoint_follower_yaml = os.path.join(planner_config_dir, 'waypoint_follower.yaml')
 
@@ -95,12 +95,12 @@ def generate_launch_description():
             output='screen',
             parameters=[planner_yaml]),
 
-        # Node(
-        #     package='nav2_recoveries',
-        #     executable='recoveries_server',
-        #     name='recoveries_server',
-        #     output='screen',
-        #     parameters=[recovery_yaml]),
+        Node(
+            package='nav2_recoveries',
+            executable='recoveries_server',
+            name='recoveries_server',
+            output='screen',
+            parameters=[recovery_yaml]),
 
         Node(
             package='nav2_bt_navigator',

@@ -4,9 +4,9 @@ from launch_ros.actions import Node
 def generate_launch_description():
     return LaunchDescription([
         Node(
-            package='waypoint_follower',
+            package='commander_app',
             executable='follow_waypoints',
-            name='waypoint_follower',
+            name='commander_app',
             output='screen',
             parameters=[{
                 'use_sim_time': True  # Set to False if not using simulation time
