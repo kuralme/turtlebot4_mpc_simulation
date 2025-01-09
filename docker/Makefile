@@ -38,6 +38,7 @@ build-overlay: build-base
 clean:
 	@echo "Removing old Docker containers of the image..."
 	@docker ps -a -q --filter "ancestor=${IMAGE_NAME}" | xargs -r docker rm
+	@docker compose down --remove-orphans
 
 # Docker compose container running script
 # Allows Docker containers to access the X server required for GUI applications
@@ -50,8 +51,13 @@ start_container: clean
 # Start the a new terminal in the container
 .PHONY: terminal
 terminal:
-	@docker exec -it $(shell docker ps -q --filter "ancestor=${IMAGE_NAME}") bash
+	@@container_id=$(shell docker ps -q --filter "ancestor=${IMAGE_NAME}") && \
+    if [ -n "$$container_id" ]; then \
+        docker exec -it $$container_id bash; \
+    else \
+        echo "No running container found for the ${IMAGE_NAME} image!"; \
+    fi
 
 # Build all targets and start the container if not specified
 .DEFAULT_GOAL := all
-all: build-base build-overlay clean start_container
+all: build-base build-overlay start_container
