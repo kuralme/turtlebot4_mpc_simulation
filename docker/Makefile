@@ -23,26 +23,30 @@ endif
 # Build the base image
 .PHONY: build-base
 build-base:
+	@echo "Building base image..."
 	@docker build --platform ${DEVICE_ARCH} -f ${DOCKERFILE1} -t ${IMAGE_NAME}_base ..
 
 # Build the overlay image & remove the base
 .PHONY: build-overlay
 build-overlay: build-base
+	@echo "Building overlay image..."
 	@docker build --platform ${DEVICE_ARCH} -f ${DOCKERFILE2} -t ${IMAGE_NAME} ..
 	@docker rmi ${IMAGE_NAME}_base
 
-# Kill any running Docker containers
-.PHONY: kill
-kill:
-	@echo "Stopping all running Docker containers:"
-	@docker ps -q --filter ancestor=${IMAGE_NAME} | xargs -r docker kill
+# Remove old Docker containers
+.PHONY: clean
+clean:
+	@echo "Removing old Docker containers of the image..."
+	@docker ps -a -q --filter "ancestor=${IMAGE_NAME}" | xargs -r docker rm
 
-# Docker compose pre-start script
-.PHONY: up
-up:
-	@echo "Starting the Docker container..."
-	@bash pre_start.sh
+# Docker compose container running script
+# Allows Docker containers to access the X server required for GUI applications
+.PHONY: start
+start: clean
+	@echo "Running the container..."
+	@xhost +local:docker
+	@docker compose run ${IMAGE_NAME} bash
 
-# Build all targets if not specified
+# Build all targets and start the container if not specified
 .DEFAULT_GOAL := all
-all: build-base build-overlay up
+all: build-base build-overlay clean start

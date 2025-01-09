@@ -24,6 +24,10 @@ services:
       - /dev/nvidia0:/dev/nvidia0
       - /dev/nvidiactl:/dev/nvidiactl
       - /dev/nvidia-uvm:/dev/nvidia-uvm
+      - /home/kuralme/DockerWs/Tb4_MPC/turtlebot4_mpc_simulation/tb4_mpc_bringup:/home/ros2_ws/src/tb4_mpc/tb4_mpc_bringup
+      - /home/kuralme/DockerWs/Tb4_MPC/turtlebot4_mpc_simulation/tb4_mpc_description:/home/ros2_ws/src/tb4_mpc/tb4_mpc_description
+      - /home/kuralme/DockerWs/Tb4_MPC/turtlebot4_mpc_simulation/tb4_mpc_nav:/home/ros2_ws/src/tb4_mpc/tb4_mpc_nav
+      - /home/kuralme/DockerWs/Tb4_MPC/turtlebot4_mpc_simulation/tb4_mpc_sim:/home/ros2_ws/src/tb4_mpc/tb4_mpc_sim
     ulimits:
       memlock:
         soft: -1
