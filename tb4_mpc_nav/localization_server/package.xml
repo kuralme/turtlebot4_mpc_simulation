@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>localization_server</name>
+  <name>tb4_localization_server</name>
   <version>0.1.0</version>
   <description>Turtlebot4 MPC Sim Navigation stack - Localization server</description>
   <maintainer email="kuralme@protonmail.com">kuralme</maintainer>

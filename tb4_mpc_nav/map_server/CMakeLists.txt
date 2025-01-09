@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(map_server)
+project(tb4_map_server)
 
 # Find dependencies
 find_package(ament_cmake REQUIRED)

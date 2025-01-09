@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(commander_app)
+project(tb4_commander_app)
 
 # Find dependencies
 find_package(ament_cmake REQUIRED)

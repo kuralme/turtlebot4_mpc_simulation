@@ -3,10 +3,11 @@ project(tb4_mpc_bringup)
 
 find_package(ament_cmake REQUIRED)
 find_package(nav2_common REQUIRED)
+find_package(navigation2 REQUIRED)
 
 install(DIRECTORY launch DESTINATION share/${PROJECT_NAME})
-install(DIRECTORY maps DESTINATION share/${PROJECT_NAME})
-install(DIRECTORY rviz DESTINATION share/${PROJECT_NAME})
+install(DIRECTORY maps   DESTINATION share/${PROJECT_NAME})
+install(DIRECTORY rviz   DESTINATION share/${PROJECT_NAME})
 install(DIRECTORY params DESTINATION share/${PROJECT_NAME})
 
 if(BUILD_TESTING)

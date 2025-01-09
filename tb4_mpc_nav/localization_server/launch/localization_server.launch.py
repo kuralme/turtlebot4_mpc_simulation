@@ -8,9 +8,9 @@ from launch_ros.actions import Node
 def generate_launch_description():
 
     nav2_yaml = os.path.join(get_package_share_directory(
-        'localization_server'), 'config', 'amcl_config.yaml')
+        'tb4_localization_server'), 'config', 'amcl_config.yaml')
     map_file = os.path.join(get_package_share_directory(
-        'map_server'), 'maps', 'depot.yaml')
+        'tb4_map_server'), 'maps', 'depot.yaml')
     rviz_config_file_path = os.path.join(get_package_share_directory(
         'tb4_mpc_bringup'), 'rviz', 'full_config.rviz')
 

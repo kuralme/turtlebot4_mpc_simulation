@@ -39,11 +39,9 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    # Get the launch directory
-    bringup_dir = get_package_share_directory('tb4_mpc_bringup')
+    # Get project directories
     desc_dir = get_package_share_directory('tb4_mpc_description')
     sim_dir = get_package_share_directory('tb4_mpc_sim')
-    launch_dir = os.path.join(sim_dir, 'launch')
 
     # Create the launch configuration variables
     namespace = LaunchConfiguration('namespace')
@@ -88,7 +86,7 @@ def generate_launch_description():
 
     declare_rviz_config_file_cmd = DeclareLaunchArgument(
         'rviz_config_file',
-        default_value=os.path.join(bringup_dir, 'rviz', 'full_config.rviz'),
+        default_value=os.path.join(desc_dir, 'rviz', 'robot_config.rviz'),
         description='Full path to the RVIZ config file to use',
     )
 
@@ -143,7 +141,7 @@ def generate_launch_description():
         ],
         remappings=remappings,
     )
-
+    
     rviz_cmd = Node(
         condition=IfCondition(use_rviz),
         package='rviz2',
@@ -193,7 +191,7 @@ def generate_launch_description():
 
     gz_robot = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(launch_dir, 'spawn_tb4.launch.py')),
+            os.path.join(sim_dir, 'launch', 'spawn_tb4.launch.py')),
         launch_arguments={'namespace': namespace,
                           'use_simulator': use_simulator,
                           'use_sim_time': use_sim_time,
@@ -205,6 +203,7 @@ def generate_launch_description():
                           'roll': pose['R'],
                           'pitch': pose['P'],
                           'yaw': pose['Y']}.items())
+
 
     # Create the launch description and populate
     ld = LaunchDescription()

@@ -5,9 +5,7 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     
-    map_file = os.path.join(get_package_share_directory('map_server'), 'maps', 'neobotix_area.yaml')
-    cartographer_rviz_config_file_path = os.path.join(get_package_share_directory('cartographer_slam'), 'rviz_config', 'mapping.rviz')
-
+    map_file = os.path.join(get_package_share_directory('tb4_map_server'), 'maps', 'depot.yaml')
 
     return LaunchDescription([
         Node(
@@ -15,18 +13,13 @@ def generate_launch_description():
             executable='map_server',
             name='map_server',
             output='screen',
-            parameters=[{'use_sim_time': True}, 
-                        {'yaml_filename':map_file} 
-                       ]),
-
+            parameters=[{'use_sim_time': True}, {'yaml_filename': map_file}]),
         Node(
             package='rviz2',
             executable='rviz2',
             output='screen',
             name='rviz2_node',
-            parameters=[{'use_sim_time': True}],
-            arguments=['-d', cartographer_rviz_config_file_path]),
-
+            parameters=[{'use_sim_time': True}]),
         Node(
             package='nav2_lifecycle_manager',
             executable='lifecycle_manager',
