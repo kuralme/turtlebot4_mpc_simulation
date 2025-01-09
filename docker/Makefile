@@ -41,12 +41,17 @@ clean:
 
 # Docker compose container running script
 # Allows Docker containers to access the X server required for GUI applications
-.PHONY: start
-start: clean
+.PHONY: start_container
+start_container: clean
 	@echo "Running the container..."
 	@xhost +local:docker
 	@docker compose run ${IMAGE_NAME} bash
 
+# Start the a new terminal in the container
+.PHONY: terminal
+terminal:
+	@docker exec -it $(shell docker ps -q --filter "ancestor=${IMAGE_NAME}") bash
+
 # Build all targets and start the container if not specified
 .DEFAULT_GOAL := all
-all: build-base build-overlay clean start
+all: build-base build-overlay clean start_container
